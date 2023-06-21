@@ -7,12 +7,14 @@ import (
 )
 
 type Config struct {
-	URL       string
-	UserAgent string
-	RTO       int
-	Host      string
-	Origin    string
-	MongoConn *mongo.Database
+	URL          string
+	UserAgent    string
+	RTO          int
+	Host         string
+	Origin       string
+	Referer      string
+	Content_type string
+	MongoConn    *mongo.Database
 }
 
 type Cookies struct {
