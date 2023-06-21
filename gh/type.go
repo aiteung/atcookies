@@ -50,9 +50,3 @@ type UserCred struct {
 	Nama     string      `json:"nama,omitempty" url:"nama,omitempty"`
 	Session  UserSession `json:"session,omitempty" url:"session,omitempty"`
 }
-
-type UserCookies struct {
-	Username string      `json:"username,omitempty" url:"username,omitempty"`
-	Password string      `json:"password,omitempty" url:"password,omitempty"`
-	Cookies  interface{} `json:"cookies,omitempty" url:"cookies,omitempty"`
-}
