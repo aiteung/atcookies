@@ -12,7 +12,6 @@ type Config struct {
 	RTO       int
 	Host      string
 	Origin    string
-	Referer   string
 	MongoConn *mongo.Database
 }
 

@@ -11,7 +11,7 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 )
 
-func Requests(method string, config Config, isPostBelanja bool, body io.Reader, cookies *Cookies) (respBody []byte) {
+func Requests(method string, config Config, isPost bool, body io.Reader, cookies *Cookies) (respBody []byte) {
 	client := http.Client{
 		Timeout: time.Duration(config.RTO) * time.Second,
 		CheckRedirect: func(req *http.Request, via []*http.Request) error {
@@ -33,7 +33,7 @@ func Requests(method string, config Config, isPostBelanja bool, body io.Reader, 
 	req.AddCookie(&cookies.Preferred_color_mode)
 	req.AddCookie(&cookies.Color_mode)
 	req.AddCookie(&cookies.Octo)
-	if isPostBelanja {
+	if isPost {
 		req.Header.Set("Accept", "application/json, text/javascript, */*; q=0.01")
 
 	} else {
@@ -43,7 +43,7 @@ func Requests(method string, config Config, isPostBelanja bool, body io.Reader, 
 	req.Header.Set("Accept-Language", "en-US,en;q=0.9,id;q=0.8")
 	req.Header.Set("Connection", "keep-alive")
 	req.Header.Set("User-Agent", config.UserAgent)
-	if isPostBelanja {
+	if isPost {
 		req.Header.Add("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8")
 
 	} else {
@@ -52,14 +52,14 @@ func Requests(method string, config Config, isPostBelanja bool, body io.Reader, 
 
 	req.Header.Add("Host", config.Host)
 	req.Header.Add("Origin", config.Origin)
-	req.Header.Add("Referer", config.Referer)
+	req.Header.Add("Referer", config.URL)
 	req.Header.Add("sec-ch-ua", "\"Google Chrome\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\"")
 	req.Header.Add("sec-ch-ua-mobile", "?0")
 	req.Header.Add("sec-ch-ua-platform", "\"Windows\"")
 	req.Header.Add("Sec-Fetch-Dest", "empty")
 	req.Header.Add("Sec-Fetch-Mode", "cors")
 	req.Header.Add("Sec-Fetch-Site", "same-origin")
-	if isPostBelanja {
+	if isPost {
 		req.Header.Add("X-Requested-With", "XMLHttpRequest")
 	}
 
